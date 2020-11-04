@@ -26,12 +26,6 @@ def cohort_by_graduation_date(request, year, month, day):
     return render(request, "core/cohort_detail.html", {"cohort": cohort})
 
 
-class CohortForm(forms.ModelForm):
-    class Meta:
-        model = Cohort
-        fields = ["name", "graduation_date"]
-
-
 # - create a model
 def cohort_create(request):
     if request.method == "GET":

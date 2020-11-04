@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>{{ cohort.name }}</h1>
+
+<p>
+  <a href="{% url 'cohort-list' %}">Back to all cohorts</a>
+</p>
+{% endblock %}

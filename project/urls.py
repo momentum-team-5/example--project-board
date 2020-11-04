@@ -16,15 +16,19 @@ Including another URLconf
 from django.contrib import admin
 from django.conf import settings
 from django.urls import include, path
-from core.views import views
+from core import views as core_views
 
 urlpatterns = [
-    path("", views.homepage),
-    path("cohorts/<int:pk>/", views.cohort_detail, name="cohort-detail"),
+    path("cohorts/", core_views.cohort_list, name="cohort-list"),
+    path("cohorts/<int:pk>/", core_views.cohort_detail, name="cohort-detail"),
     path(
-        "cohorts/<int:year>/<int:month>/<int:day>/", views.cohort_by_graduation_date
+        "cohorts/<int:year>/<int:month>/<int:day>/",
+        core_views.cohort_by_graduation_date,
+        name="cohort-by-graduation-date",
     ),  # /cohorts/2020/11/02/
-    path("students/<slug:slug>/", views.student_detail),  # /students/indigo-suarez/
+    path("cohorts/create/", core_views.cohort_create, name="cohort-create"),
+    path("cohorts/<int:pk>/update/", core_views.cohort_update, name="cohort-update"),
+    path("cohorts/<int:pk>/delete/", core_views.cohort_delete, name="cohort-delete"),
     path("admin/", admin.site.urls),
 ]
 
