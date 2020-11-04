@@ -16,16 +16,23 @@ Including another URLconf
 from django.contrib import admin
 from django.conf import settings
 from django.urls import include, path
+from core.views import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path("", views.homepage),
+    path("cohorts/<int:pk>/", views.cohort_detail, name="cohort-detail"),
+    path(
+        "cohorts/<int:year>/<int:month>/<int:day>/", views.cohort_by_graduation_date
+    ),  # /cohorts/2020/11/02/
+    path("students/<slug:slug>/", views.student_detail),  # /students/indigo-suarez/
+    path("admin/", admin.site.urls),
 ]
 
 if settings.DEBUG:
     import debug_toolbar
-    urlpatterns = [
-        path('__debug__/', include(debug_toolbar.urls)),
 
+    urlpatterns = [
+        path("__debug__/", include(debug_toolbar.urls)),
         # For django versions before 2.0:
         # url(r'^__debug__/', include(debug_toolbar.urls)),
     ] + urlpatterns

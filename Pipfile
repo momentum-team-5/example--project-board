@@ -4,6 +4,10 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
+prospector = "*"
+mypy = "*"
+pytest = "*"
+black = "*"
 
 [packages]
 django = "*"
@@ -14,3 +18,6 @@ django-environ = "*"
 
 [requires]
 python_version = "3.8"
+
+[pipenv]
+allow_prereleases = true
